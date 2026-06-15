@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MaisonCléo — Our Story / Spec Sample by The Silk Pen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=DM+Sans:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── TOKENS ── */
+    :root {
+      --blanc:     #fdfcfa;
+      --creme:     #f2ede5;
+      --lin:       #e0d8cc;
+      --gris:      #9a9188;
+      --encre:     #1c1916;
+      --fil:       #7a6e64;   /* thread colour — the signature accent */
+
+      --display: 'Cormorant Garamond', Georgia, serif;
+      --body:    'DM Sans', system-ui, sans-serif;
+
+      --max: 820px;
+      --pad: clamp(1.5rem, 6vw, 4rem);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+
+    body {
+      background: var(--blanc);
+      color: var(--encre);
+      font-family: var(--body);
+      font-weight: 300;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky; top: 0; z-index: 50;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem var(--pad);
+      background: var(--blanc);
+      border-bottom: 1px solid var(--lin);
+    }
+
+    .nav-logo {
+      font-family: var(--display);
+      font-size: 1.5rem;
+      font-weight: 400;
+      letter-spacing: 0.1em;
+      color: var(--encre);
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex; gap: 2.2rem; list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.68rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gris);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--encre); }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 6rem var(--pad) 0;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      font-size: 0.63rem;
+      letter-spacing: 0.32em;
+      text-transform: uppercase;
+      color: var(--gris);
+      margin-bottom: 2.2rem;
+      display: block;
+    }
+
+    .hero-headline {
+      font-family: var(--display);
+      font-size: clamp(3rem, 8vw, 5.8rem);
+      font-weight: 300;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: var(--encre);
+      margin-bottom: 3rem;
+    }
+
+    .hero-headline em {
+      font-style: italic;
+      color: var(--fil);
+    }
+
+    .hero-intro {
+      font-size: 1.1rem;
+      line-height: 1.85;
+      color: var(--fil);
+      max-width: min(540px, 100%);
+      border-left: 1px solid var(--lin);
+      padding-left: 1.8rem;
+      margin-bottom: 5rem;
+    }
+
+    /* ── STITCH DIVIDER — the signature element ── */
+    /* A single row of stitches. Hand-stitched rhythm, not a rule. */
+    .stitch {
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      margin: 0;
+    }
+
+    .stitch svg {
+      width: 100%;
+      height: 12px;
+      display: block;
+    }
+
+    /* ── SECTIONS ── */
+    .section {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 5rem var(--pad);
+    }
+
+    .section + .section {
+      padding-top: 0;
+    }
+
+    /* two-col: label + body */
+    .two-col {
+      display: grid;
+      grid-template-columns: 10rem 1fr;
+      gap: 1.5rem 4rem;
+      align-items: start;
+    }
+
+    .col-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gris);
+      padding-top: 0.4rem;
+    }
+
+    /* ── BODY TYPE ── */
+    .heading-2 {
+      font-family: var(--display);
+      font-size: clamp(2rem, 4.5vw, 3rem);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: 0.01em;
+      margin-bottom: 2rem;
+      color: var(--encre);
+    }
+
+    .heading-2 em { font-style: italic; }
+
+    .body-text {
+      font-size: 0.98rem;
+      line-height: 1.9;
+      color: #3d3830;
+      margin-bottom: 1.4rem;
+    }
+
+    .body-text:last-child { margin-bottom: 0; }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote {
+      margin: 3.5rem 0;
+      display: grid;
+      grid-template-columns: 1px 1fr;
+      gap: 0 2rem;
+      align-items: start;
+    }
+
+    .pq-line {
+      background: var(--fil);
+      align-self: stretch;
+      min-height: 100%;
+    }
+
+    .pq-body {
+      font-family: var(--display);
+      font-size: clamp(1.5rem, 3.5vw, 2.1rem);
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.4;
+      color: var(--encre);
+      margin-bottom: 1rem;
+    }
+
+    .pq-cite {
+      font-size: 0.63rem;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--gris);
+    }
+
+    /* ── TRANSPARENCY PANEL ── */
+    .transparency {
+      background: var(--creme);
+      border: 1px solid var(--lin);
+      padding: 3rem 3.5rem;
+      margin: 3rem 0;
+    }
+
+    .transparency-heading {
+      font-family: var(--display);
+      font-size: 1.3rem;
+      font-weight: 400;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+      color: var(--encre);
+    }
+
+    .transparency-sub {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gris);
+      margin-bottom: 2rem;
+    }
+
+    .receipt-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.7rem 0;
+      border-bottom: 1px dashed var(--lin);
+      font-size: 0.9rem;
+    }
+
+    .receipt-row:last-child { border-bottom: none; }
+
+    .receipt-label { color: var(--fil); }
+    .receipt-value {
+      font-family: var(--display);
+      font-size: 1rem;
+      font-weight: 400;
+      color: var(--encre);
+    }
+
+    /* ── PROCESS STEPS ── */
+    .process {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 2rem;
+    }
+
+    .process-step {
+      display: grid;
+      grid-template-columns: 2.2rem 1fr;
+      gap: 0 1.8rem;
+      padding: 1.8rem 0;
+      border-bottom: 1px solid var(--lin);
+      align-items: start;
+    }
+
+    .process-step:first-child { border-top: 1px solid var(--lin); }
+
+    .step-num {
+      font-family: var(--display);
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--fil);
+      padding-top: 0.2rem;
+    }
+
+    .step-content {}
+
+    .step-title {
+      font-size: 0.72rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--encre);
+      margin-bottom: 0.4rem;
+    }
+
+    .step-body {
+      font-size: 0.92rem;
+      line-height: 1.75;
+      color: #3d3830;
+    }
+
+    /* ── PRESS MOMENT ── */
+    .press-strip {
+      background: var(--encre);
+      padding: 3.5rem var(--pad);
+      text-align: center;
+    }
+
+    .press-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .press-label {
+      font-size: 0.62rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gris);
+      margin-bottom: 1.5rem;
+    }
+
+    .press-quote {
+      font-family: var(--display);
+      font-size: clamp(1.5rem, 4vw, 2.4rem);
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.4;
+      color: var(--blanc);
+      margin-bottom: 1.5rem;
+    }
+
+    .press-source {
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--fil);
+    }
+
+    /* ── CLOSING ── */
+    .closing {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 5rem var(--pad) 7rem;
+      text-align: center;
+    }
+
+    .closing-headline {
+      font-family: var(--display);
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 300;
+      font-style: italic;
+      line-height: 1.25;
+      color: var(--encre);
+      margin-bottom: 2rem;
+    }
+
+    .closing-body {
+      font-size: 0.95rem;
+      color: var(--fil);
+      max-width: min(440px, 100%);
+      margin: 0 auto 3rem;
+      line-height: 1.85;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.8rem;
+      border: 1px solid var(--encre);
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--encre);
+      text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .btn:hover {
+      background: var(--encre);
+      color: var(--blanc);
+    }
+
+    /* ── CREDIT ── */
+    .credit {
+      background: var(--creme);
+      border-top: 1px solid var(--lin);
+      padding: 1.4rem var(--pad);
+      text-align: center;
+    }
+
+    .credit p {
+      font-size: 0.67rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gris);
+    }
+
+    .credit a { color: var(--fil); text-decoration: none; }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+
+    .reveal.visible { opacity: 1; transform: none; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ── 580px — mobile ── */
+    @media (max-width: 580px) {
+      /* Nav */
+      .nav-links { display: none; }
+
+      /* Hero */
+      .hero { padding-top: 3.5rem; }
+      .hero-intro {
+        font-size: 1rem;
+        padding-left: 1.2rem;
+        margin-bottom: 3rem;
+      }
+
+      /* Sections */
+      .section { padding: 3rem var(--pad); }
+      .section + .section { padding-top: 0; }
+
+      /* Two-col */
+      .two-col { grid-template-columns: 1fr; gap: 0.4rem; }
+      .col-label { padding-top: 0; margin-bottom: 0.2rem; }
+
+      /* Pull quote */
+      .pull-quote { gap: 0 1.2rem; margin: 2.5rem 0; }
+
+      /* Process steps */
+      .process-step { padding: 1.4rem 0; gap: 0 1.2rem; }
+
+      /* Transparency panel */
+      .transparency { padding: 2rem 1.4rem; margin: 2rem 0; }
+      .receipt-row {
+        flex-wrap: wrap;
+        gap: 0.2rem;
+        padding: 0.9rem 0;
+      }
+      .receipt-value { width: 100%; font-size: 0.95rem; }
+
+      /* Press strip */
+      .press-strip { padding: 3rem var(--pad); margin-top: 3rem; }
+      .press-source {
+        letter-spacing: 0.14em;
+        line-height: 2;
+      }
+
+      /* Closing */
+      .closing { padding: 3.5rem var(--pad) 4rem; }
+
+      /* Credit */
+      .credit p {
+        font-size: 0.6rem;
+        letter-spacing: 0.1em;
+        line-height: 2;
+      }
+    }
+
+    /* ── 420px — small phones ── */
+    @media (max-width: 420px) {
+      /* Nav */
+      nav { padding: 0.9rem var(--pad); }
+
+      /* Hero */
+      .hero { padding-top: 2.8rem; }
+      .hero-intro { font-size: 0.95rem; }
+
+      /* Sections */
+      .section { padding: 2.5rem var(--pad); }
+
+      /* Process */
+      .process-step { gap: 0 1rem; }
+
+      /* Transparency */
+      .transparency { padding: 1.6rem 1.1rem; }
+      .transparency-heading { font-size: 1.1rem; }
+
+      /* Press */
+      .press-strip { padding: 2.5rem var(--pad); }
+
+      /* Closing */
+      .closing { padding: 3rem var(--pad) 3.5rem; }
+      .btn { padding: 0.85rem 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#">MaisonCléo</a>
+    <ul class="nav-links">
+      <li><a href="#">Shop</a></li>
+      <li><a href="#">Journal</a></li>
+      <li><a href="#">Our Atelier</a></li>
+      <li><a href="#">Custom</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="hero">
+    <span class="eyebrow reveal">Notre histoire — Our story</span>
+    <h1 class="hero-headline reveal">
+      The fabric<br>
+      comes first.<br>
+      <em>Everything else</em><br>
+      follows.
+    </h1>
+    <p class="hero-intro reveal">
+      MaisonCléo began as a request. A daughter asked her mother to sew her a silk top
+      because she couldn't find what she wanted anywhere. That was the whole plan.
+      What grew from it was something neither of them expected.
+    </p>
+  </header>
+
+  <!-- STITCH DIVIDER -->
+  <div class="stitch">
+    <svg viewBox="0 0 820 12" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="6" x2="820" y2="6" stroke="#e0d8cc" stroke-width="1" stroke-dasharray="6 5" />
+    </svg>
+  </div>
+
+  <!-- ORIGIN -->
+  <section class="section">
+    <div class="two-col reveal">
+      <span class="col-label">The beginning</span>
+      <div>
+        <h2 class="heading-2">A daughter. A seamstress.<br><em>One silk top.</em></h2>
+        <p class="body-text">
+          Marie Dewet had worked internships inside the fashion industry and come out the other side
+          disillusioned. She had seen the real cost of a polyester blouse. She had seen the margins.
+          She had seen what went into the clothes people wore without question — and she stopped buying them.
+        </p>
+        <p class="body-text">
+          She wanted handmade clothes, in natural materials, made locally. She couldn't find them
+          at a price she could afford. So she asked her mother, Nathalie — Cléo — a qualified seamstress,
+          to make her a little silk top. Then another. Then a few more.
+        </p>
+        <p class="body-text">
+          Marie put them on Instagram. People asked to buy them. She built an e-shop.
+          That was the beginning of MaisonCléo — not a business plan, not a pitch deck.
+          A request between a daughter and her mother.
+        </p>
+      </div>
+    </div>
+
+    <div class="pull-quote reveal">
+      <div class="pq-line"></div>
+      <div>
+        <p class="pq-body">"I asked my mother, who is a professional seamstress, to make me little tops in silks because I wanted to buy only handmade clothes in natural materials. It was impossible to find what I wanted — or it was too expensive, or it wasn't made locally."</p>
+        <span class="pq-cite">— Marie Dewet, Founder</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- STITCH -->
+  <div class="stitch">
+    <svg viewBox="0 0 820 12" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="6" x2="820" y2="6" stroke="#e0d8cc" stroke-width="1" stroke-dasharray="6 5" />
+    </svg>
+  </div>
+
+  <!-- THE NAME -->
+  <section class="section">
+    <div class="two-col reveal">
+      <span class="col-label">The name</span>
+      <div>
+        <h2 class="heading-2"><em>Maison.</em> Cléo.</h2>
+        <p class="body-text">
+          "Maison" because all the women in Marie's family were into sewing. The skill passed down
+          through generations — from hands to hands, room to room. A house full of fabric and thread
+          and the knowledge of how to turn one into the other.
+        </p>
+        <p class="body-text">
+          "Cléo" because that is what everyone calls Nathalie. Not her formal name.
+          Her name. The one her family uses, the one her daughter calls her.
+          MaisonCléo is named for a person, not a concept — and that specificity is intentional.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STITCH -->
+  <div class="stitch">
+    <svg viewBox="0 0 820 12" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="6" x2="820" y2="6" stroke="#e0d8cc" stroke-width="1" stroke-dasharray="6 5" />
+    </svg>
+  </div>
+
+  <!-- HOW IT'S MADE -->
+  <section class="section">
+    <div class="two-col reveal">
+      <span class="col-label">The process</span>
+      <div>
+        <h2 class="heading-2">The fabric arrives.<br><em>Then we imagine.</em></h2>
+        <p class="body-text">
+          MaisonCléo does not work from mood boards or seasonal trend reports. The inspiration comes
+          from the fabric itself — deadstock from French Couture houses and factories, materials that
+          existed before the idea of a garment did.
+        </p>
+        <p class="body-text">
+          Marie finds a fabric. If she can picture what it wants to become, she buys it.
+          If she cannot, she doesn't. That is the edit. Not a trend calendar. Not a sales forecast.
+          Just a question of what a piece of silk or lace or cotton is asking to be.
+        </p>
+      </div>
+    </div>
+
+    <div class="process reveal">
+      <div class="process-step">
+        <span class="step-num">i.</span>
+        <div class="step-content">
+          <p class="step-title">Source</p>
+          <p class="step-body">Deadstock from French Couture houses. Surplus from French factories. Every fabric is natural. Every yard would otherwise go to waste.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="step-num">ii.</span>
+        <div class="step-content">
+          <p class="step-title">Design</p>
+          <p class="step-body">Marie imagines the piece from the fabric — not the other way around. No brief, no formula. The material decides what it becomes.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="step-num">iii.</span>
+        <div class="step-content">
+          <p class="step-title">Make</p>
+          <p class="step-body">Cléo and the atelier team make each piece by hand, to order, in the north of France. One hour to four and a half hours per garment, depending on the complexity.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <span class="step-num">iv.</span>
+        <div class="step-content">
+          <p class="step-title">Your size</p>
+          <p class="step-body">Every piece is available made-to-measure. If a MaisonCléo garment should fit anyone who wants it, it will be made to fit anyone who wants it.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pull-quote reveal" style="margin-top: 3rem;">
+      <div class="pq-line"></div>
+      <div>
+        <p class="pq-body">"The inspiration comes from the fabrics I find and receive, and from there, I imagine what can be done."</p>
+        <span class="pq-cite">— Marie Dewet</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSPARENCY PANEL -->
+  <div style="max-width: var(--max); margin: 0 auto; padding: 0 var(--pad);">
+    <div class="transparency reveal">
+      <p class="transparency-heading">What it actually costs to make this blouse.</p>
+      <p class="transparency-sub">MaisonCléo publishes the cost breakdown for every piece. This is what that looks like.</p>
+      <div class="receipt-row">
+        <span class="receipt-label">Deadstock silk — sourced in France</span>
+        <span class="receipt-value">€18</span>
+      </div>
+      <div class="receipt-row">
+        <span class="receipt-label">Thread, lining, haberdashery</span>
+        <span class="receipt-value">€3</span>
+      </div>
+      <div class="receipt-row">
+        <span class="receipt-label">Time to make — 2h 30min by hand</span>
+        <span class="receipt-value">€37.50</span>
+      </div>
+      <div class="receipt-row">
+        <span class="receipt-label">Packaging (recyclable)</span>
+        <span class="receipt-value">€2</span>
+      </div>
+      <div class="receipt-row">
+        <span class="receipt-label">Our margin</span>
+        <span class="receipt-value">Shown on the product page</span>
+      </div>
+      <div class="receipt-row" style="margin-top: 0.5rem; padding-top: 1rem; border-top: 1px solid var(--lin); border-bottom: none;">
+        <span class="receipt-label" style="font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--encre);">You see everything.</span>
+        <span class="receipt-value" style="font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;">Every time.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRESS MOMENT -->
+  <div class="press-strip" style="margin-top: 5rem;">
+    <div class="press-inner">
+      <p class="press-label">As seen in</p>
+      <p class="press-quote">"Quickly making its way onto our Explore page via the clothing rails of Leandra Medine and Emily Ratajkowski, MaisonCléo has fast become the name on every fashion editor's lips."</p>
+      <p class="press-source">Suitcase Magazine &nbsp;·&nbsp; Net-à-Porter &nbsp;·&nbsp; Selfridges &nbsp;·&nbsp; Le Printemps &nbsp;·&nbsp; Galeries Lafayette</p>
+    </div>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="closing reveal">
+    <h2 class="closing-headline">
+      No calendar.<br>
+      No trend report.<br>
+      No stock.
+    </h2>
+    <p class="closing-body">
+      MaisonCléo makes what Cléo's hands and Marie's eye decide to make, from the fabric that arrives at the atelier,
+      when it arrives. A new piece is released when it is ready. Not before.
+      It is available in your size. Always.
+    </p>
+    <a href="#" class="btn">Discover the current drop</a>
+  </div>
+
+  <!-- STITCH -->
+  <div class="stitch">
+    <svg viewBox="0 0 820 12" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="0" y1="6" x2="820" y2="6" stroke="#e0d8cc" stroke-width="1" stroke-dasharray="6 5" />
+    </svg>
+  </div>
+
+  <!-- CREDIT -->
+  <div class="credit">
+    <p>
+      Spec copy sample by <a href="https://thesilkpen.in" target="_blank">The Silk Pen</a>
+      &nbsp;·&nbsp; Luxury copywriting for fashion &amp; beauty brands
+      &nbsp;·&nbsp; <a href="mailto:hello@thesilkpen.in">hello@thesilkpen.in</a>
+    </p>
+  </div>
+
+  <script>
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  </script>
+
+</body>
+</html>
